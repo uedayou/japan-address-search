@@ -45,6 +45,8 @@
     <dl>
       <dt>日付文字列</dt>
       <dd><input value="東京都千代田区霞が関1-3-1" id="text" style="width:30em;"/> <button id="textButton">変換</button></dd>
+      <dt>緯度経度</dt>
+      <dd><input value="34.7331" id="lat" style="width:14.75em;"/> <input value="135.5002" id="lng" style="width:14.75em;margin-right:0.5em;"/><button id="latLngButton">変換</button></dd>
       <dt>JSON</dt>
       <dd><textarea rows="10" id="json">{"@type":"場所型","住所":{"@type":"住所型","表記":"東京都千代田区霞が関1-3-1"}}</textarea> <button id="jsonButton">変換</button></dd>
       <dt>実行結果</dt>
@@ -161,6 +163,13 @@ fetch("__ENDPOINT__", {
 
     $("jsonButton").addEventListener("click", function() {
       send("application/json", $("json").value);
+    });
+
+    $("latLngButton").addEventListener("click", function() {
+      var lat = $("lat").value;
+      var lng = $("lng").value;
+      var json = '{"@type": "座標型","緯度": "'+lat+'","経度": "'+lng+'"}';
+      send("application/json", json);
     });
   </script>
 </body>

@@ -70,5 +70,5 @@ const server = http.createServer((req, res) => {
 
 });
 server.listen(port, () => {
-  console.log(`imi-enrichment-address-server is running on port ${port}`);
+  console.log(`imi-enrichment-address-plus-server is running on port ${port}`);
 });

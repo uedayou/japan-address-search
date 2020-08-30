@@ -24,6 +24,16 @@ const optionDefinitions = [{
   typeLabel: '{underline string}',
   description: '変換対象とする住所文字列',
 }, {
+  name: 'lat',
+  type: Number,
+  typeLabel: '{underline latitude}',
+  description: '変換対象とする緯度',
+}, {
+  name: 'lng',
+  type: Number,
+  typeLabel: '{underline longitude}',
+  description: '変換対象とする経度',
+}, {
   name: 'indent',
   alias: 'i',
   type: Number,
@@ -69,6 +79,14 @@ if (options.help) {
 } else if (options.file) {
   const input = JSON.parse(fs.readFileSync(options.file, "UTF-8"));
   enrichment(input).then(json => {
+    console.log(JSON.stringify(json, null, options.indent));
+  });
+} else if (options.lat && options.lng) {
+  const point = {
+    lat: options.lat,
+    lng: options.lng
+  };
+  enrichment(point).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else {

@@ -115,4 +115,79 @@
       "表記": "府中市"
     }
   }
+}, {
+  "name": "緯度の値が数値ではない",
+  "input": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "座標型",
+    "緯度": "abc",
+    "経度": "135"
+  },
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "不正な経緯度です"
+    }
+  }
+}, {
+  "name": "経度の値が数値ではない",
+  "input": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "座標型",
+    "緯度": "35",
+    "経度": "abc"
+  },
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "不正な経緯度です"
+    }
+  }
+}, {
+  "name": "緯度の数値が有効範囲外",
+  "input": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "座標型",
+    "緯度": "-350",
+    "経度": "139"
+  },
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "不正な経緯度です"
+    }
+  }
+}, {
+  "name": "経度の数値が有効範囲外",
+  "input": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "座標型",
+    "緯度": "35",
+    "経度": "1390"
+  },
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "不正な経緯度です"
+    }
+  }
+}, {
+  "name": "リバースジオコーディングで検索結果が0",
+  "input": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "座標型",
+    "緯度": "50",
+    "経度": "150"
+  },
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "範囲内に住所が見つかりませんでした"
+    }
+  }
 }]

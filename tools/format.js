@@ -4,6 +4,8 @@ const fs = require('fs');
 const levelup = require('levelup');
 const leveldown = require('leveldown');
 const db = levelup(leveldown(__dirname + "/../db"));
+const geo = require('level-geospatial')(db);
+
 const promises = [];
 
 const chome = [
@@ -239,6 +241,8 @@ readline.createInterface({
   } else {
     json["住所"]["町名"] = name;
   }
+
+  promises.push(geo.put({lat:+col[6], lon:+col[7]}, name_code, JSON.stringify(json)));
 
   promises.push(db.put(name_code, JSON.stringify(json)));
 

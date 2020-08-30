@@ -10,6 +10,11 @@ const leveldown = require('leveldown');
 // 住所から緯度経度付き場所型を返す
 module.exports = function(src) {
 
+  // 逆ジオコーディング
+  if (src.lat && src.lng || src["@type"] == "座標型") {
+    return require("./lib/reverse-geocoder")(src);
+  }
+
   const dst = typeof src === 'string' ? {
     "@context": "https://imi.go.jp/ns/core/context.jsonld",
     "@type": "場所型",
