@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-const enrichment = require("../main");
+//const enrichment = require("../main");
+const enrichment = require("../index");
 const http = require("http");
 
 if (process.argv.length < 3 || !process.argv[2].match(/^[1-9][0-9]*$/)) {

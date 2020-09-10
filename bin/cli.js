@@ -3,7 +3,8 @@
 const fs = require('fs');
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
-const enrichment = require("../main");
+//const enrichment = require("../main");
+const enrichment = require("../index");
 
 const optionDefinitions = [{
   name: 'help',
