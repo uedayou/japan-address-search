@@ -138,15 +138,15 @@ imi-enrichment-address と同じくコマンドラインインターフェイス
 以下のようにパッケージ済みモジュールをインストールしてください。
 
 ```
-$ npm install https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.0/imi-enrichment-address-plus-1.1.0.tgz
+$ npm install https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.1/imi-enrichment-address-plus-1.1.1.tgz
 ```
 
 ### コマンドラインインターフェイス
 
-`imi-enrichment-address-plus-1.0.0.tgz` には`imi-enrichment-address`と同じくコマンドラインインターフェイスが利用できます。
+`imi-enrichment-address-plus-1.1.1.tgz` には`imi-enrichment-address`と同じくコマンドラインインターフェイスが利用できます。
 
 ```
-$ npm install -g https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.0/imi-enrichment-address-plus-1.1.0.tgz
+$ npm install -g https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.1/imi-enrichment-address-plus-1.1.1.tgz
 
 # ヘルプの表示
 $ imi-enrichment-address-plus -h
@@ -174,7 +174,7 @@ Web APIも imi-enrichment-address 同様利用できます。
 ### サーバの起動方法
 
 ```
-$ npm install https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.0/imi-enrichment-address-plus-1.1.0.tgz
+$ npm install https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.1/imi-enrichment-address-plus-1.1.1.tgz
 $ node node_modules/imi-enrichment-address-plus/bin/server.js
 Usage: node server.js [port number]
 
