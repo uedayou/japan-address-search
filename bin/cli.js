@@ -26,14 +26,20 @@ const optionDefinitions = [{
   description: '変換対象とする住所文字列',
 }, {
   name: 'lat',
-  type: Number,
+  type: String,
   typeLabel: '{underline latitude}',
   description: '変換対象とする緯度',
 }, {
   name: 'lng',
-  type: Number,
+  type: String,
   typeLabel: '{underline longitude}',
   description: '変換対象とする経度',
+}, {
+  name: 'old',
+  type: Boolean,
+  typeLabel: '{underline old}',
+  defaultValue: false,
+  description: '歴史地名を検索対象にしたい場合は --old オプションをつけてください'
 }, {
   name: 'indent',
   alias: 'i',
@@ -44,6 +50,9 @@ const optionDefinitions = [{
 }];
 
 const options = commandLineArgs(optionDefinitions);
+
+let db_name = "db";
+if (options.old) db_name = "hpdb";
 
 if (options.help) {
   const usage = commandLineUsage([{
@@ -74,12 +83,12 @@ if (options.help) {
   }]);
   console.log(usage)
 } else if (options.string) {
-  enrichment(options.string).then(json => {
+  enrichment(options.string, db_name).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else if (options.file) {
   const input = JSON.parse(fs.readFileSync(options.file, "UTF-8"));
-  enrichment(input).then(json => {
+  enrichment(input, db_name).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else if (options.lat && options.lng) {
@@ -87,7 +96,7 @@ if (options.help) {
     lat: options.lat,
     lng: options.lng
   };
-  enrichment(point).then(json => {
+  enrichment(point, db_name).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else {
@@ -97,7 +106,7 @@ if (options.help) {
     buffer += chunk;
   }).on('end', () => {
     const input = JSON.parse(buffer);
-    enrichment(input).then(json => {
+    enrichment(input, db_name).then(json => {
       console.log(JSON.stringify(json, null, options.indent));
     });
   });

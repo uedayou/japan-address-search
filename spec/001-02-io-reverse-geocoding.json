@@ -7,7 +7,6 @@
     "経度": "139.665353"
   },
   "output": {
-    "@context": "https://imi.go.jp/ns/core/context.jsonld",
     "@type": "場所型",
     "住所": {
       "@type": "住所型",

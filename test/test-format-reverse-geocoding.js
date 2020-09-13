@@ -43,7 +43,7 @@ describe('imi-enrichment-address#format-reverse-geocoder', function() {
           "地理座標": {
             "@type": "座標型",
             "経度": "139.767201",
-            "緯度": "35.68156"
+            "緯度": "35.681560"
           }
         });
         done();

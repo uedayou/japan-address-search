@@ -138,7 +138,9 @@ describe('imi-enrichment-addressn#cli', () => {
             const promise = typeof a.input === 'string' ? cli(["-s", a.input]) : cli(null, JSON.stringify(a.input));
             promise.then(res => {
               try {
-                expect(JSON.parse(res)).deep.equal(a.output);
+                let json = JSON.parse(res);
+                if ("場所" in json) json = json["場所"][0];
+                expect(json).deep.equal(a.output);
                 done();
               } catch (e) {
                 done(e);

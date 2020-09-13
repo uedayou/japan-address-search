@@ -1,13 +1,15 @@
 {
   "name": "imi-enrichment-address-plus",
-  "version": "1.0.1",
-  "description": "IMI 住所型正規化パッケージ+逆ジオコーディング機能",
+  "version": "1.1.0",
+  "description": "IMI 住所型正規化パッケージ+逆ジオコーディング機能+歴史地名データ検索",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
     "download": "bash tools/download.sh",
     "format": "zcat cache/isj.txt.gz | node tools/format.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json",
     "tree": "zcat cache/isj.txt.gz  | node tools/tree.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json > lib/tree.json",
+    "hp-format": "node tools/hp-format.js gazetteer/地名.txt gazetteer/地名_上位地名.txt",
+    "hp-list": "node tools/hp-list.js gazetteer/地名.txt > lib/hp-list.json",
     "start": "node bin/server.js 8080"
   },
   "bin": "bin/cli.js",
@@ -15,6 +17,7 @@
     "main.js",
     "bin",
     "lib",
+    "hpdb",
     "db"
   ],
   "keywords": [

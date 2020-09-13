@@ -43,7 +43,7 @@ describe('imi-enrichment-addressn#cli-reverse-geocoding', () => {
     it("--lat --lng", (done) => {
       cli(["--lat", samples[0].input["緯度"], "--lng", samples[0].input["経度"]]).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[0].output);
+          expect(JSON.parse(res)["場所"][0]).deep.equal(samples[0].output);
           done();
         } catch (e) {
           done(e);
@@ -54,7 +54,7 @@ describe('imi-enrichment-addressn#cli-reverse-geocoding', () => {
     it("-f", (done) => {
       cli(["-f", tempfile]).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[0].output);
+          expect(JSON.parse(res)["場所"][0]).deep.equal(samples[0].output);
           done();
         } catch (e) {
           done(e);
@@ -65,7 +65,7 @@ describe('imi-enrichment-addressn#cli-reverse-geocoding', () => {
     it("--file", (done) => {
       cli(["--file", tempfile]).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[0].output);
+          expect(JSON.parse(res)["場所"][0]).deep.equal(samples[0].output);
           done();
         } catch (e) {
           done(e);
@@ -76,7 +76,7 @@ describe('imi-enrichment-addressn#cli-reverse-geocoding', () => {
     it("stdin", (done) => {
       cli(null, JSON.stringify(samples[0].input)).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[0].output);
+          expect(JSON.parse(res)["場所"][0]).deep.equal(samples[0].output);
           done();
         } catch (e) {
           done(e);

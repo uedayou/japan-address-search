@@ -122,6 +122,7 @@ describe('imi-enrichment-address#server', () => {
               }
             }).then(res => res.json()).then(json => {
               try {
+                if ("場所" in json) json = json["場所"][0];
                 expect(json).deep.equal(a.output);
                 done();
               } catch (e) {
