@@ -1,6 +1,6 @@
 {
   "name": "imi-enrichment-address-plus",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "IMI 住所型正規化パッケージ+逆ジオコーディング機能+歴史地名データ検索",
   "main": "index.js",
   "scripts": {

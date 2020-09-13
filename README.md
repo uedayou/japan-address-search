@@ -224,6 +224,20 @@ convert(point).then(json=>{
 });
 ```
 
+歴史地名データを検索したい場合は`convert`の第2引数に`old`を与えてください。
+```
+convert(point, "old").then(json=>{
+  console.log(json);
+});
+```
+
+文字列も検索できます。
+```
+convert("永田町", "old").then(json=>{
+  console.log(json);
+});
+```
+
 ## 開発者向け情報
 
 imi-enrichment-address-plusのビルド等は imi-enrichment-address と同じです。

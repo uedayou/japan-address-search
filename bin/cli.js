@@ -51,8 +51,8 @@ const optionDefinitions = [{
 
 const options = commandLineArgs(optionDefinitions);
 
-let db_name = "db";
-if (options.old) db_name = "hpdb";
+let type = "";
+if (options.old) type = "old";
 
 if (options.help) {
   const usage = commandLineUsage([{
@@ -83,12 +83,12 @@ if (options.help) {
   }]);
   console.log(usage)
 } else if (options.string) {
-  enrichment(options.string, db_name).then(json => {
+  enrichment(options.string, type).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else if (options.file) {
   const input = JSON.parse(fs.readFileSync(options.file, "UTF-8"));
-  enrichment(input, db_name).then(json => {
+  enrichment(input, type).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else if (options.lat && options.lng) {
@@ -96,7 +96,7 @@ if (options.help) {
     lat: options.lat,
     lng: options.lng
   };
-  enrichment(point, db_name).then(json => {
+  enrichment(point, type).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else {
@@ -106,7 +106,7 @@ if (options.help) {
     buffer += chunk;
   }).on('end', () => {
     const input = JSON.parse(buffer);
-    enrichment(input, db_name).then(json => {
+    enrichment(input, type).then(json => {
       console.log(JSON.stringify(json, null, options.indent));
     });
   });
