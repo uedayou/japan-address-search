@@ -124,13 +124,13 @@ imi-enrichment-addressは、現在の住所データ([国土地理院 位置参�
 ## インストール
 
 ```
-$ npm install https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.1/imi-enrichment-address-plus-1.1.1.tgz
+$ npm install https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.2/imi-enrichment-address-plus-1.1.2.tgz
 ```
 
 コマンドラインインタフェースの場合は、`-g`をつけてグローバル環境にインストールしてください。
 
 ```
-$ npm install -g https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.1/imi-enrichment-address-plus-1.1.1.tgz
+$ npm install -g https://github.com/uedayou/imi-enrichment-address-plus/releases/download/v1.1.2/imi-enrichment-address-plus-1.1.2.tgz
 ```
 
 ## 利用方法
