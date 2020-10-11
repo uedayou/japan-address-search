@@ -1,7 +1,5 @@
 # japan-address-search
 
-[![Actions Status](https://github.com/uedayou/japan-address-search/workflows/test/badge.svg)](https://github.com/uedayou/japan-address-search/actions)
-
 日本の住所を文字列と緯度経度で検索できるNode.jsモジュールです。
 現在の住所データ以外に古い地名(明治時代以前の地名)の検索にも対応しています。
 
