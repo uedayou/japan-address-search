@@ -8,8 +8,8 @@ jobs:
   run-test:
     strategy:
       matrix:
-        node: 12.x
-        os: ubuntu-18.04
+        node: [10.x, 12.x]
+        os: ubuntu-latest
 
     runs-on: ${{ matrix.os }}
     steps:
