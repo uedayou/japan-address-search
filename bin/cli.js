@@ -56,8 +56,8 @@ if (options.old) type = "old";
 
 if (options.help) {
   const usage = commandLineUsage([{
-    header: 'imi-enrichment-address',
-    content: '住所文字列をもとに住所型・場所型の情報を補完します'
+    header: 'japan-address-search',
+    content: '日本の住所データ検索ライブラリ'
   }, {
     header: 'オプション',
     optionList: optionDefinitions
@@ -65,19 +65,19 @@ if (options.help) {
     header: '実行例',
     content: [{
         desc: 'ヘルプの表示',
-        example: '$ imi-enrichment-address -h'
+        example: '$ japan-address-search -h'
       },
       {
         desc: '文字列の処理',
-        example: '$ imi-enrichment-address -s 霞が関2'
+        example: '$ japan-address-search -s 霞が関2'
       },
       {
         desc: 'ファイルの処理',
-        example: '$ imi-enrichment-address input.json'
+        example: '$ japan-address-search input.json'
       },
       {
         desc: '標準入力の処理',
-        example: '$ cat input.json | imi-enrichment-address'
+        example: '$ cat input.json | japan-address-search'
       }
     ]
   }]);

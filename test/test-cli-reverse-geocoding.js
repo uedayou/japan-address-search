@@ -25,7 +25,7 @@ function cli(options, stdin) {
 
 const samples = JSON.parse(fs.readFileSync(`${spec}/001-02-io-reverse-geocoding.json`, "UTF-8"));
 
-describe('imi-enrichment-addressn#cli-reverse-geocoding', () => {
+describe('japan-address-search#cli-reverse-geocoding', () => {
 
   const tempfile = `tmp.${(new Date()).getTime()}.json`;
 

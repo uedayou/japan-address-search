@@ -23,9 +23,18 @@ function cli(options, stdin) {
   });
 }
 
+function conv(res, org) {
+  if (org == undefined) org = [];
+  if ("場所" in res) {
+    res = res["場所"][0];
+    if (!org["地理座標"] && "住所" in res) res = res["住所"][0];
+  }
+  return res;
+}
+
 const samples = JSON.parse(fs.readFileSync(`${spec}/001-io.json`, "UTF-8"));
 
-describe('imi-enrichment-addressn#cli', () => {
+describe('japan-address-search#cli', () => {
 
   const tempfile = `tmp.${(new Date()).getTime()}.json`;
 
@@ -43,7 +52,7 @@ describe('imi-enrichment-addressn#cli', () => {
     it("-h", (done) => {
       cli(["-h"]).then(res => {
         try {
-          expect(res).to.have.string("imi-enrichment-address");
+          expect(res).to.have.string("japan-address-search");
           done();
         } catch (e) {
           done(e);
@@ -54,7 +63,7 @@ describe('imi-enrichment-addressn#cli', () => {
     it("--help", (done) => {
       cli(["--help"]).then(res => {
         try {
-          expect(res).to.have.string("imi-enrichment-address");
+          expect(res).to.have.string("japan-address-search");
           done();
         } catch (e) {
           done(e);
@@ -65,7 +74,8 @@ describe('imi-enrichment-addressn#cli', () => {
     it("-s", (done) => {
       cli(["-s", samples[0].input]).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[0].output);
+          res = conv(JSON.parse(res));
+          expect(res).deep.equal(samples[0].output);
           done();
         } catch (e) {
           done(e);
@@ -76,7 +86,8 @@ describe('imi-enrichment-addressn#cli', () => {
     it("--string", (done) => {
       cli(["--string", samples[0].input]).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[0].output);
+          res = conv(JSON.parse(res));
+          expect(res).deep.equal(samples[0].output);
           done();
         } catch (e) {
           done(e);
@@ -87,7 +98,8 @@ describe('imi-enrichment-addressn#cli', () => {
     it("-f", (done) => {
       cli(["-f", tempfile]).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[1].output);
+          res = conv(JSON.parse(res));
+          expect(res).deep.equal(samples[1].output);
           done();
         } catch (e) {
           done(e);
@@ -98,7 +110,8 @@ describe('imi-enrichment-addressn#cli', () => {
     it("--file", (done) => {
       cli(["--file", tempfile]).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[1].output);
+          res = conv(JSON.parse(res));
+          expect(res).deep.equal(samples[1].output);
           done();
         } catch (e) {
           done(e);
@@ -109,7 +122,8 @@ describe('imi-enrichment-addressn#cli', () => {
     it("filename only", (done) => {
       cli([tempfile]).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[1].output);
+          res = conv(JSON.parse(res));
+          expect(res).deep.equal(samples[1].output);
           done();
         } catch (e) {
           done(e);
@@ -120,7 +134,8 @@ describe('imi-enrichment-addressn#cli', () => {
     it("stdin", (done) => {
       cli(null, JSON.stringify(samples[1].input)).then(res => {
         try {
-          expect(JSON.parse(res)).deep.equal(samples[1].output);
+          res = conv(JSON.parse(res));
+          expect(res).deep.equal(samples[1].output);
           done();
         } catch (e) {
           done(e);
@@ -138,9 +153,13 @@ describe('imi-enrichment-addressn#cli', () => {
             const promise = typeof a.input === 'string' ? cli(["-s", a.input]) : cli(null, JSON.stringify(a.input));
             promise.then(res => {
               try {
-                let json = JSON.parse(res);
-                if ("場所" in json) json = json["場所"][0];
-                expect(json).deep.equal(a.output);
+                res = conv(JSON.parse(res),a.output);
+                if (Array.isArray(res)) {
+                  for (let i=0;i<res.length;i++) {
+                    res[i] = conv(res[i],a.output);
+                  }
+                }
+                expect(res).deep.equal(a.output);
                 done();
               } catch (e) {
                 done(e);

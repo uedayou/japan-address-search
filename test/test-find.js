@@ -118,7 +118,7 @@ const data = {
   }
 };
 
-describe('imi-enrichment-address#find', function() {
+describe('japan-address-search#find', function() {
   Object.keys(data).forEach(label => {
     const code = data[label];
     it(label, () => {

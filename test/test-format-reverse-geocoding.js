@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 
 const geoSearch = require("../lib/geo-search");
 
-describe('imi-enrichment-address#format-reverse-geocoder', function() {
+describe('japan-address-search#format-reverse-geocoder', function() {
 
   let db, geo;
 
@@ -11,10 +11,16 @@ describe('imi-enrichment-address#format-reverse-geocoder', function() {
     geo = require('level-geospatial')(db);
   });
 
-  after(() => {
-    db.close().then(() => {
+  after(async () => {
+    //db.close().then(() => {
+    //  console.error("data base closed.");
+    //});
+    try {
+      await db.close();
       console.error("data base closed.");
-    });
+    } catch(e) {
+      console.error(e);
+    }
   });
 
   it("東京駅", (done) => {

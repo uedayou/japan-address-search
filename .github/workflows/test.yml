@@ -1,0 +1,26 @@
+name: "test"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run-test:
+    strategy:
+      matrix:
+        node: 12.x
+        os: ubuntu-18.04
+
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup node version
+      uses: actions/setup-node@master
+      with:
+        version: ${{ matrix.node }}
+
+    - name: "npm ci"
+      run: npm ci
+
+    - name: "npm test"
+      run: npm test

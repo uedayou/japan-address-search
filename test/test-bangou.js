@@ -14,7 +14,7 @@ const data = {
   }
 };
 
-describe('imi-enrichment-address#bangou', function() {
+describe('japan-address-search#bangou', function() {
   describe('番地・号なし', function() {
     it("空白", () => {
       expect(bangou("")).deep.equal({});

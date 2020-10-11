@@ -8,7 +8,16 @@ const spec = __dirname + "/../spec";
 const PORT = "37564";
 const ENDPOINT = `http://localhost:${PORT}`;
 
-describe('imi-enrichment-address#server', () => {
+function conv(res, org) {
+  if (org == undefined) org = [];
+  if ("場所" in res) {
+    res = res["場所"][0];
+    if (!org["地理座標"] && "住所" in res) res = res["住所"][0];
+  }
+  return res;
+}
+
+describe('japan-address-search#server', () => {
 
   let server = null;
 
@@ -122,7 +131,12 @@ describe('imi-enrichment-address#server', () => {
               }
             }).then(res => res.json()).then(json => {
               try {
-                if ("場所" in json) json = json["場所"][0];
+                json = conv(json,a.output);
+                if (Array.isArray(json)) {
+                  for (let i=0;i<json.length;i++) {
+                    json[i] = conv(json[i],a.output);
+                  }
+                }
                 expect(json).deep.equal(a.output);
                 done();
               } catch (e) {

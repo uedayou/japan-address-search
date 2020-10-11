@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const levelup = require('levelup');
 const leveldown = require('leveldown');
 
-describe('imi-enrichment-address#format', function() {
+describe('japan-address-search#format', function() {
 
   let db;
 
@@ -10,10 +10,16 @@ describe('imi-enrichment-address#format', function() {
     db = levelup(leveldown(__dirname + "/../db"));
   });
 
-  after(() => {
-    db.close().then(() => {
+  after(async () => {
+    //db.close().then(() => {
+    //  console.error("data base closed.");
+    //});
+    try {
+      await db.close();
       console.error("data base closed.");
-    });
+    } catch(e) {
+      console.error(e);
+    }
   });
 
   it("都道府県", (done) => {

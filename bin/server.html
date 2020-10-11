@@ -2,7 +2,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>imi-enrichment-address</title>
+  <title>japan-address-search</title>
   <style>
     pre {
       background: black;
@@ -36,9 +36,9 @@
 
 <body>
   <div>
-    <h1>imi-enrichment-address</h1>
+    <h1>japan-address-search</h1>
 
-    <p>このページは imi-enrichment-address の WebAPI の動作確認ページです。</p>
+    <p>このページは japan-address-search の WebAPI の動作確認ページです。</p>
 
     <h1>動作確認</h1>
     <p><b>変換</b> ボタンを押すとこのブラウザから実際に WebAPI を実行して結果を表示します</p>
@@ -64,24 +64,32 @@
     <pre>
 $ curl -X POST -H 'Content-Type: text/plain' -d '東京都千代田区霞が関1-3-1' __ENDPOINT__
 {
-  "@type": "場所型",
-  "住所": {
-    "@type": "住所型",
-    "表記": "東京都千代田区霞が関1-3-1",
-    "都道府県": "東京都",
-    "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000",
-    "市区町村": "千代田区",
-    "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C13101",
-    "町名": "霞が関",
-    "丁目": "1",
-    "番地": "3",
-    "号": "1"
-  },
-  "地理座標": {
-    "@type": "座標型",
-    "緯度": "35.673944",
-    "経度": "139.752558"
-  }
+  "@context": "https://imi.go.jp/ns/core/context.jsonld",
+  "場所": [
+    {
+      "@type": "場所型",
+      "住所": [
+        {
+          "@type": "住所型",
+          "表記": "東京都千代田区霞が関1-3-1",
+          "都道府県": "東京都",
+          "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000",
+          "市区町村": "千代田区",
+          "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C13101",
+          "町名": "霞が関",
+          "丁目": "1",
+          "種別": "位置参照情報",
+          "番地": "3",
+          "号": "1"
+        }
+      ],
+      "地理座標": {
+        "@type": "座標型",
+        "緯度": "35.673944",
+        "経度": "139.752558"
+      }
+    }
+  ]
 }
 </pre>
 
@@ -89,16 +97,31 @@ $ curl -X POST -H 'Content-Type: text/plain' -d '東京都千代田区霞が関1
     <pre>
 $ curl -X POST -H 'Content-Type: application/json' -d '{"@type":"住所型","表記":"東京都千代田区霞が関1-3-1"}' __ENDPOINT__
 {
-  "@type": "住所型",
-  "表記": "東京都千代田区霞が関1-3-1",
-  "都道府県": "東京都",
-  "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000",
-  "市区町村": "千代田区",
-  "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C13101",
-  "町名": "霞が関",
-  "丁目": "1",
-  "番地": "3",
-  "号": "1"
+  "場所": [
+    {
+      "@type": "場所型",
+      "住所": [
+        {
+          "@type": "住所型",
+          "表記": "東京都千代田区霞が関1-3-1",
+          "都道府県": "東京都",
+          "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000",
+          "市区町村": "千代田区",
+          "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C13101",
+          "町名": "霞が関",
+          "丁目": "1",
+          "種別": "位置参照情報",
+          "番地": "3",
+          "号": "1"
+        }
+      ],
+      "地理座標": {
+        "@type": "座標型",
+        "緯度": "35.673944",
+        "経度": "139.752558"
+      }
+    }
+  ]
 }
 </pre>
 

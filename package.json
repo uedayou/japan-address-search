@@ -1,10 +1,10 @@
 {
-  "name": "imi-enrichment-address-plus",
-  "version": "1.1.2",
-  "description": "IMI 住所型正規化パッケージ+逆ジオコーディング機能+歴史地名データ検索",
+  "name": "japan-address-search",
+  "version": "2.0.0",
+  "description": "日本の住所データ検索ライブラリ",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --timeout 3000",
     "download": "bash tools/download.sh",
     "format": "zcat cache/isj.txt.gz | node tools/format.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json",
     "tree": "zcat cache/isj.txt.gz  | node tools/tree.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json > lib/tree.json",
@@ -14,14 +14,15 @@
   },
   "bin": "bin/cli.js",
   "files": [
-    "main.js",
     "bin",
     "lib",
     "hpdb",
     "db"
   ],
   "keywords": [
-    "imi"
+    "japan",
+    "address",
+    "search"
   ],
   "author": "uedayou",
   "license": "MIT",
@@ -34,12 +35,12 @@
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.0",
     "level-geospatial": "0.0.5",
-    "leveldown": "^5.4.1",
-    "levelup": "^4.3.2"
+    "leveldown": "^5.6.0",
+    "levelup": "^4.4.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uedayou/imi-enrichment-address-plus.git"
+    "url": "git+https://github.com/uedayou/japan-address-search.git"
   },
-  "homepage": "https://github.com/uedayou/imi-enrichment-address-plus#readme"
+  "homepage": "https://github.com/uedayou/japan-address-search#readme"
 }
