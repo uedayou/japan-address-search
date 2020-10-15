@@ -3,7 +3,16 @@ const enrichment = require("./lib/ca-main");
 const hpEnrichment = require("./lib/hp-main");
 const reverseGeocoder = require("./lib/rg-main");
 
-module.exports = async function(src, type) {
+const conf = require("./lib/conf");
+
+module.exports = async function(src, opts) {
+  let type, num;
+  if (opts) {
+    type = opts.type;
+    num = opts.limit;
+  }
+  if (num!==undefined && Number.isInteger(num) && num > 0)
+    conf.MAX_RESULTS = num;
   if (src["住所"] && src["住所"]["種別"] == "歴史地名データ")
     type = "old";
   db_name = type=="old" ? "hpdb" : "db";

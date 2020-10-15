@@ -1,7 +1,7 @@
 {
   "name": "japan-address-search",
-  "version": "2.0.0",
-  "description": "日本の住所データ検索ライブラリ",
+  "version": "2.1.0",
+  "description": "オープンデータを使用した日本の住所検索モジュール。現在の住所と明治時代以前の地名を文字列と緯度経度で検索可能。",
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 3000",

@@ -29,7 +29,7 @@ $ npm install -g japan-address-search
 
 node.js モジュールとしてインストールすると以下のようにコード上から実行できます。
 
-現在の住所データの正規化・部分一致検索(10件)
+現在の住所データの正規化・部分一致検索(デフォルト10件)
 ```
 const convert = require('japan-address-search');
 convert("霞が関2").then(json=>{
@@ -37,7 +37,7 @@ convert("霞が関2").then(json=>{
 });
 ```
 
-現在の住所データの逆ジオコーディング検索(10件)
+現在の住所データの逆ジオコーディング検索(デフォルト10件)
 ```
 const convert = require('japan-address-search');
 const point = {
@@ -49,25 +49,34 @@ convert(point).then(json=>{
 });
 ```
 
-古い地名データの部分一致検索(10件)
+古い地名データの部分一致検索(デフォルト10件)
 ```
 const convert = require('japan-address-search');
-convert("神保町", "old").then(json=>{
+convert("神保町", {type: "old"}).then(json=>{
   console.log(json);
 });
 ```
 
-古い地名データの逆ジオコーディング検索(10件)
+古い地名データの逆ジオコーディング検索(デフォルト10件)
 ```
 const convert = require('japan-address-search');
 const point = {
   lat: 35.675551,
   lng: 139.750413
 }
-convert(point, "old").then(json=>{
+convert(point, {type: "old"}).then(json=>{
   console.log(json);
 });
 ```
+
+検索件数の上限を変更したい場合は、以下のように指定してください。
+```
+// 検索件数を5件に変更
+convert(point, {type: "old", limit: 5}).then(json=>{
+  console.log(json);
+});
+```
+
 
 コマンドラインインターフェースでは以下のように利用できます。
 ```
@@ -82,6 +91,9 @@ $ japan-address-search -s 神保町 --old > output.json
 
 # 古い地名データの逆ジオコーディング検索
 $ japan-address-search --lat 35.675551 --lng 139.750413 --old > output.json
+
+# 検索件数の上限を変更
+$ japan-address-search -s 神保町 --limit 5 > output.json
 ```
 
 ## 出力例

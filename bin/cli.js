@@ -41,6 +41,12 @@ const optionDefinitions = [{
   defaultValue: false,
   description: '歴史地名を検索対象にしたい場合は --old オプションをつけてください'
 }, {
+  name: 'limit',
+  type: Number,
+  typeLabel: '{underline limit}',
+  defaultValue: false,
+  description: '検索で得られる結果の上限を指定します(デフォルト:10)'
+}, {
   name: 'indent',
   alias: 'i',
   type: Number,
@@ -51,8 +57,10 @@ const optionDefinitions = [{
 
 const options = commandLineArgs(optionDefinitions);
 
-let type = "";
+let type = "", limit;
 if (options.old) type = "old";
+
+if (options.limit) limit = Math.floor(options.limit);
 
 if (options.help) {
   const usage = commandLineUsage([{
@@ -83,12 +91,12 @@ if (options.help) {
   }]);
   console.log(usage)
 } else if (options.string) {
-  enrichment(options.string, type).then(json => {
+  enrichment(options.string, {type, limit}).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else if (options.file) {
   const input = JSON.parse(fs.readFileSync(options.file, "UTF-8"));
-  enrichment(input, type).then(json => {
+  enrichment(input, {type, limit}).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else if (options.lat && options.lng) {
@@ -96,7 +104,7 @@ if (options.help) {
     lat: options.lat,
     lng: options.lng
   };
-  enrichment(point, type).then(json => {
+  enrichment(point, {type, limit}).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
   });
 } else {
@@ -106,7 +114,7 @@ if (options.help) {
     buffer += chunk;
   }).on('end', () => {
     const input = JSON.parse(buffer);
-    enrichment(input, type).then(json => {
+    enrichment(input, {type, limit}).then(json => {
       console.log(JSON.stringify(json, null, options.indent));
     });
   });
