@@ -8,7 +8,7 @@ jobs:
   run-test:
     strategy:
       matrix:
-        node: [10.x, 12.x]
+        node: [12.x]
 
     runs-on: ubuntu-latest
     steps:
@@ -27,8 +27,8 @@ jobs:
     - name: "npm run format"
       run: npm run format
 
-    - name: "npm run hp-tree"
-      run: npm run hp-tree
+    - name: "npm run hp-list"
+      run: npm run hp-list
 
     - name: "npm run hp-format"
       run: npm run hp-format
