@@ -4,7 +4,7 @@
   "description": "オープンデータを使用した日本の住所検索モジュール。現在の住所と明治時代以前の地名を文字列と緯度経度で検索可能。",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 3000",
+    "test": "mocha",
     "download": "bash tools/download.sh",
     "format": "zcat cache/isj.txt.gz | node tools/format.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json",
     "tree": "zcat cache/isj.txt.gz  | node tools/tree.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json > lib/tree.json",
