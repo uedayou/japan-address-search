@@ -3,7 +3,7 @@ const enrichment = require("./lib/ca-main");
 const hpEnrichment = require("./lib/hp-main");
 const reverseGeocoder = require("./lib/rg-main");
 
-const conf = require("./lib/conf");
+const conf = require("./lib/config");
 
 module.exports = async function(src, opts) {
   let type, num;
