@@ -1,0 +1,37 @@
+name: "test"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run-test:
+    strategy:
+      matrix:
+        node: [10.x, 12.x]
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup node version
+      uses: actions/setup-node@master
+      with:
+        version: ${{ matrix.node }}
+
+    - name: "npm ci"
+      run: npm ci
+
+    - name: "npm run tree"
+      run: npm run tree
+
+    - name: "npm run format"
+      run: npm run format
+
+    - name: "npm run hp-tree"
+      run: npm run hp-tree
+
+    - name: "npm run hp-format"
+      run: npm run hp-format
+
+    - name: "npm test"
+      run: npm test
