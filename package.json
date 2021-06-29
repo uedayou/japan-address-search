@@ -1,6 +1,6 @@
 {
   "name": "japan-address-search",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "オープンデータを使用した日本の住所検索モジュール。現在の住所と明治時代以前の地名を文字列と緯度経度で検索可能。",
   "main": "index.js",
   "scripts": {
@@ -27,16 +27,16 @@
   "author": "uedayou",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^6.2.3",
-    "node-fetch": "^2.6.0"
+    "chai": "^4.3.4",
+    "mocha": "^9.0.1",
+    "node-fetch": "^2.6.1"
   },
   "dependencies": {
     "command-line-args": "^5.1.1",
-    "command-line-usage": "^6.1.0",
-    "level-geospatial": "0.0.5",
-    "leveldown": "^5.6.0",
-    "levelup": "^4.4.0"
+    "command-line-usage": "^6.1.1",
+    "level-geospatial": "0.0.6",
+    "leveldown": "^6.0.0",
+    "levelup": "^5.0.1"
   },
   "repository": {
     "type": "git",
